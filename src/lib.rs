@@ -28,8 +28,8 @@ pub fn day(attr: TokenStream, item: TokenStream) -> TokenStream {
             let input = raw_input.trim_end().to_string();
             let Some(lf_pos) = input.find('\n') else { return (input, "\n") };
             let Some(lf_pre) = input.as_bytes().get(lf_pos-1) else { return (input, "\n") };
-            if *lf_pre == b'\r' { (input, "\r\n")}
-            else { (input, "\n")}
+            if *lf_pre == b'\r' { (input, "\r\n") }
+            else { (input, "\n") }
         }
     })
 }
