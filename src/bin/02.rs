@@ -19,7 +19,7 @@ fn main(input: String, _line_ending: &str) -> (usize, usize) {
 
 fn is_single_rep(num: &usize) -> bool {
     let digit_count = num.checked_ilog10().expect("bad input") + 1;
-    let half_factor = 10usize.pow(digit_count / 2);
+    let half_factor = 10_usize.pow(digit_count / 2);
     (num / half_factor) == (num % half_factor)
 }
 
