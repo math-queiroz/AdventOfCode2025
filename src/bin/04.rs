@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 
 #[aoc::day(04, "Printing Department")]
-#[aoc::asserts("1384", "0")]
+#[aoc::asserts("1384", "8013")]
 fn main(input: String, line_ending: &str) -> (usize, usize) {
     let parsed_data = input.split(line_ending);
     let grid: Vec<Vec<char>> = parsed_data.map(|l| l.chars().collect()).collect();
