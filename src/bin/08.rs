@@ -6,7 +6,7 @@ type Coordinates = (i64, i64, i64);
 const LINK_COUNT: usize = 1000;
 
 #[aoc::day(08, "Playground")]
-#[aoc::asserts("4896 24455520", "0")]
+#[aoc::asserts("4896 24455520 80109", "0")]
 fn main(input: String, line_ending: &str) -> (usize, usize) {
     let points: Vec<Coordinates> = input
         .split(line_ending)
@@ -47,8 +47,9 @@ fn main(input: String, line_ending: &str) -> (usize, usize) {
         let Some((p1, p2, _)) = distances_iter.next() else {
             break;
         };
-        let mut found_in = Vec::with_capacity(2);
-        let mut found_coords = Vec::with_capacity(2);
+
+        let mut found_in = vec![];
+        let mut found_coords = vec![];
         for i in 0..circuits.len() {
             let (has_p1, has_p2) = (circuits[i].contains(p1), circuits[i].contains(p2));
             if has_p1 || has_p2 {
@@ -63,12 +64,13 @@ fn main(input: String, line_ending: &str) -> (usize, usize) {
                 }
             }
         }
-        if found_in.len() > 1 {
-            for set in circuits[found_in[1]].clone() {
-                circuits[found_in[0]].insert(set);
+
+        if found_in.len() == 2 {
+            for node in circuits[found_in[1]].clone() {
+                circuits[found_in[0]].insert(node);
             }
-            circuits.swap_remove(found_in[1]);
-        } else if found_in.len() > 0 {
+            circuits.remove(found_in[1]);
+        } else if found_in.len() == 1 {
             if found_coords[0] == p1 {
                 circuits[found_in[0]].insert(*p2);
             } else {
