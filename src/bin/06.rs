@@ -60,3 +60,4 @@ fn main(input: String, line_ending: &str) -> (i64, i64) {
         .collect();
 
     (results[0], results[1])
+}
